@@ -8,3 +8,4 @@ scikit-learn
 pdfkit
 jinja2
 markdown
+openpyxl
