@@ -1,0 +1,10 @@
+matplotlib
+pandas
+streamlit
+seaborn
+plotly
+wordcloud
+scikit-learn
+pdfkit
+jinja2
+markdown
