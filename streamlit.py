@@ -159,46 +159,12 @@ st.markdown("""
 
 
 
-import streamlit as st
-import pandas as pd
-import io
-
 def load_data():
-    """
-    Load data either from uploaded file or create sample data if no file is uploaded
-    Returns a pandas DataFrame
-    """
-    # Add file uploader to sidebar
-    uploaded_file = st.sidebar.file_uploader(
-        "Upload eNPS Data (Excel file)", 
-        type=['xlsx', 'xls'],
-        help="Upload your analyzed eNPS data file in Excel format"
-    )
-    
-    if uploaded_file is not None:
-        try:
-            return pd.read_excel(uploaded_file)
-        except Exception as e:
-            st.error(f"Error loading file: {str(e)}")
-            st.stop()
-    else:
-        # Create sample data for demonstration
-        sample_data = {
-            'eNPS Score': [7, 8, 6, 9, 5, 4, 8, 7, 9, 3],
-            'eNPS_Category': ['Promoter', 'Promoter', 'Passive', 'Promoter', 'Passive', 
-                            'Detractor', 'Promoter', 'Promoter', 'Promoter', 'Detractor'],
-            'Feedback_Cleaned': ['Great work environment', 'Good benefits', 'Average experience',
-                               'Excellent culture', 'Okay workplace', 'Need improvements',
-                               'Love the team', 'Good management', 'Amazing opportunities',
-                               'Poor communication'],
-            'Dept_Sales': [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-            'Dept_Engineering': [0, 1, 1, 0, 1, 0, 1, 0, 1, 0],
-            'Dept_Marketing': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        }
-        st.sidebar.warning("Using sample data. Upload your Excel file for actual analysis.")
-        return pd.DataFrame(sample_data)
-
-
+    """Load the analyzed eNPS data"""
+    try:
+        return pd.read_excel("analyzed_eNPS_data.xlsx")
+    except:
+        return pd.read_excel("C:/Users/HP/Desktop/eNPS/analyzed_eNPS_data.xlsx")
 
 def create_wordcloud(texts):
     """Generate and return a wordcloud figure"""
@@ -489,7 +455,6 @@ def main():
     
     with metric_col4:
         response_rate = (df['Feedback'].notna().sum() / len(df)) * 100
-
         st.metric("📝 Response Rate", f"{response_rate:.1f}%", "+5.2%")
     
     
