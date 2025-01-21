@@ -489,6 +489,7 @@ def main():
     
     with metric_col4:
         response_rate = (df['Feedback'].notna().sum() / len(df)) * 100
+
         st.metric("📝 Response Rate", f"{response_rate:.1f}%", "+5.2%")
     
     
